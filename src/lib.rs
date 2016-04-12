@@ -27,12 +27,10 @@ fn testh(cx: &mut ExtCtxt,
     let test_attribute = cx.attribute(sp, cx.meta_word(sp, token::InternedString::new("test")));
     let attrs = Some(Box::new(vec![test_attribute]));
 
-    let item = match item {
+    match item {
         Item(it) => {
             Item(it.with_attrs(attrs))
         },
         _ => item
-    };
-
-    item
+    }
 }
