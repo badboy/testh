@@ -13,5 +13,4 @@ script:
       cargo test
 
 notifications:
-  email:
-    on_success: never
+  email: false
