@@ -1,4 +1,7 @@
 #![feature(plugin_registrar, quote, rustc_private)]
+#![cfg_attr(feature = "clippy", allow(unstable_features))]
+#![cfg_attr(feature = "clippy", feature(plugin))]
+#![cfg_attr(feature = "clippy", plugin(clippy))]
 
 extern crate rustc_plugin;
 extern crate syntax;

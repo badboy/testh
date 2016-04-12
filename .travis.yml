@@ -7,7 +7,7 @@ rust:
 
 script:
   - |
-      cargo build &&
+      cargo build --features=clippy &&
       cd examples &&
       cargo build &&
       cargo test
