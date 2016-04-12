@@ -12,9 +12,9 @@ You don't have to! Just use `tesŧ` … I mean `testh`.
 
 ## Use it
 
-Add it as a dev-dependency to your `Cargo.toml`:
+Add it as a dependency to your `Cargo.toml`:
 ```
-[dev-dependencies]
+[dependencies]
 testh = { git = "https://github.com/badboy/testh" }
 ```
 
