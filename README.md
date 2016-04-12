@@ -13,14 +13,15 @@ You don't have to! Just use `tesŧ` … I mean `testh`.
 ## Use it
 
 Add it as a dependency to your `Cargo.toml`:
-```
+
+```toml
 [dependencies]
 testh = { git = "https://github.com/badboy/testh" }
 ```
 
 Then enable the plugin and tesŧ away!
 
-```
+```rust
 #![feature(plugin, custom_attribute)]
 #![plugin(testh)]
 
@@ -32,7 +33,7 @@ fn it_really_works() {
 
 It even works in tesŧ modules:
 
-```
+```rust
 #![feature(non_ascii_idents)]
 
 #[cfg(test)]
