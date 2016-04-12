@@ -12,6 +12,12 @@ mod tesŧ {
     #[tesŧ]
     fn it_works() {
     }
+
+    #[tesŧ]
+    #[should_panic]
+    fn panics() {
+        assert!(false);
+    }
 }
 
 fn main() {
