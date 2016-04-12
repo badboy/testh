@@ -1,0 +1,11 @@
+[package]
+name = "testh-example"
+version = "0.1.0"
+authors = ["Jan-Erik Rediger <janerik@fnordig.de>"]
+
+[dev-dependencies]
+testh = { path = "../" }
+
+[[bin]]
+name = "testh-example"
+path = "testh.rs"
