@@ -5,19 +5,20 @@
 
 extern crate rustc_plugin;
 extern crate syntax;
+extern crate syntax_pos;
 
 use syntax::ast::MetaItem;
 use syntax::codemap::Span;
 use syntax::ext::base::{ExtCtxt, MultiModifier, Annotatable};
 use syntax::ext::build::AstBuilder;
-use syntax::parse::token;
+use syntax::attr::HasAttrs;
+use syntax_pos::symbol::Symbol;
 use rustc_plugin::registry::Registry;
 use syntax::ext::base::Annotatable::*;
-use syntax::attr::WithAttrs;
 
 #[plugin_registrar]
 pub fn plugin_registrar(reg: &mut Registry) {
-    reg.register_syntax_extension(token::intern("tesŧ"), MultiModifier(Box::new(testh)));
+    reg.register_syntax_extension(Symbol::intern("tesŧ"), MultiModifier(Box::new(testh)));
 }
 
 fn testh(cx: &mut ExtCtxt,
@@ -27,12 +28,14 @@ fn testh(cx: &mut ExtCtxt,
     -> Annotatable
 {
     // Create the #[test] attribute.
-    let test_attribute = cx.attribute(sp, cx.meta_word(sp, token::InternedString::new("test")));
-    let attrs = Some(Box::new(vec![test_attribute]));
+    let test_attribute = cx.attribute(sp, cx.meta_word(sp, Symbol::intern("test")));
 
     match item {
         Item(it) => {
-            Item(it.with_attrs(attrs))
+            Item(it.map_attrs(|mut attrs| {
+                attrs.push(test_attribute);
+                attrs
+            }))
         },
         _ => item
     }
